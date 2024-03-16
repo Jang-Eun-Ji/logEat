@@ -31,6 +31,13 @@ public class PostController {
         this.postService = postService;
     }
 
+	
+
+    @GetMapping("/post/test")
+    public ResponseEntity<?> random() {
+	return new ResponseEntity<>("TestOk", HttpStatus.OK);
+    }
+
     @PostMapping("/post/new")
     public ResponseEntity<ResponseDto> createPost( PostCreateRequestDto postCreateRequestDto) {
         Post post = postService.createPost(postCreateRequestDto);
@@ -94,6 +101,8 @@ public class PostController {
         PostDetailResponseDto postDetailResponseDto = postService.postDetail(id);
         return new ResponseEntity<>(postDetailResponseDto, HttpStatus.OK);
     }
+    
+    @CrossOrigin
     @PostMapping("/post/image/upload")
     public ResponseEntity<?> postImageUpload(@RequestParam("upload") MultipartFile request) {
         try {
